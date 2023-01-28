@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Footer } from "./components/Footer";
 import "./scss/app.scss";
 
-function App() {
-  const [count, setCount] = useState(0);
+const urlGithubUser = "https://github.com/jordytiradotorres";
 
+function App() {
   return (
     <div className="App">
       {/* Todo
@@ -16,13 +17,8 @@ function App() {
       Clear Completed
 
       Drag and drop to reorder list */}
-      <div class="attribution">
-        Challenge by{" "}
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
-          Frontend Mentor
-        </a>
-        . Coded by <a href="#">Your Name Here</a>.
-      </div>
+
+      <Footer urlGithubUser={urlGithubUser} />
     </div>
   );
 }
