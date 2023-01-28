@@ -12,4 +12,3 @@
 - Alternar modo claro y oscuro
 - Bonificación: arrastre y suelte para reordenar elementos en la lista
 - Bonificación: cree este proyecto como una aplicación de pila completa
-- Descargue el proyecto y revise el archivo README.md. Esto proporcionará más detalles sobre el proyecto y lo ayudará a configurarlo.
