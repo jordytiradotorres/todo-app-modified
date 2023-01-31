@@ -1,6 +1,6 @@
 export const Footer = ({ urlGithubUser = "" }) => {
   return (
-    <div class="attribution">
+    <div className="attribution">
       Challenge by{" "}
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
         Frontend Mentor

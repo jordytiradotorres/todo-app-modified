@@ -1,0 +1,69 @@
+.todo-task {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-bottom: 2px solid $light-grayish-blue;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+
+    &:first-of-type {
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+    &:last-of-type {
+        border-radius: 0 0 0.5rem 0.5rem;
+        border-bottom: none;
+    }
+
+    &--figure {
+        position: absolute;
+        left: 1rem;
+        top: 0.65rem;
+        width: 20px;
+        height: 20px;
+        border: thin solid $dark-grayish-blue;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--text {
+        flex: 1;
+        margin-left: 3rem;
+        color: $very-dark-grayish-blue;
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+
+    &--button {
+        border: 0;
+        outline: none;
+        background-color: transparent;
+        padding-right: 1rem;
+        cursor: pointer;
+    }
+
+    &--close {
+        width: 15px;
+        height: 15px;
+    }
+
+    &--total {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 1.5rem;
+        color: $dark-grayish-blue;
+    }
+
+    &--clearCompleted {
+        padding-right: 1rem;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: $dark-grayish-blue;
+        font-family: $font-josefin-sans;
+        cursor: pointer;
+    }
+}

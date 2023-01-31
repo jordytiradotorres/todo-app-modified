@@ -1,0 +1,17 @@
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+        margin: 3rem 0 2rem;
+        color: $light-grayish-blue-hover;
+        text-transform: uppercase;
+        letter-spacing: 7px;
+    }
+
+    figure {
+        position: absolute;
+        right: 1rem;
+    }
+}
