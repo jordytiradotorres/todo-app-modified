@@ -13,5 +13,9 @@
     figure {
         position: absolute;
         right: 1rem;
+
+        @include mq(medium) {
+            position: initial;
+        }
     }
 }

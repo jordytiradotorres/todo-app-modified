@@ -52,6 +52,28 @@ const App = () => {
 
           <div className="todo-task todo-task--total">
             <span>5 items left</span>
+
+            <section className="todo-actions--desktop">
+              <button
+                type="button"
+                className="todo-task--clearCompleted desktop"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                className="todo-task--clearCompleted desktop"
+              >
+                Active
+              </button>
+              <button
+                type="button"
+                className="todo-task--clearCompleted desktop"
+              >
+                Completed
+              </button>
+            </section>
+
             <button className="todo-task--clearCompleted">
               Clear Completed
             </button>
@@ -63,9 +85,9 @@ const App = () => {
             <button type="button">Completed</button>
           </section>
         </section>
-      </main>
 
-      <footer className="todo-footer">Drag and Drop to reorder list</footer>
+        <footer className="todo-footer">Drag and Drop to reorder list</footer>
+      </main>
     </>
   );
 };

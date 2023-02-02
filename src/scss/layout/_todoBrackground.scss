@@ -1,9 +1,8 @@
 .todo-background {
-    background-image: url(../assets/images/bg-mobile-light.jpg), $check-background;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 30vh;
-    position: relative;
-    z-index: 100;
+    height: 200px;
+
+    @include mq(medium) {
+        width: 500px;
+        margin: 0 auto;
+    }
 }

@@ -3,4 +3,9 @@
     top: -1.5rem;
     display: flex;
     flex-direction: column;
+
+    @include mq(medium) {
+        width: 500px;
+        margin: 0 auto;
+    }
 }

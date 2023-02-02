@@ -1,0 +1,13 @@
+.todo {
+    background-image: url(../assets/images/bg-mobile-light.jpg), $check-background;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    position: relative;
+    z-index: 100;
+
+    @include mq(medium) {
+        background-image: url(../assets/images/bg-desktop-light.jpg), $check-background;
+    }
+}
