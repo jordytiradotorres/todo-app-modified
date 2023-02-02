@@ -1,3 +1,32 @@
+.theme {
+    min-height: 100vh;
+
+    &-dark {
+        background-color: $very-dark-blue;
+
+        .todo-input input,
+        .todo-task,
+        .todo-actions {
+            background-color: $very-dark-desaturated-blue;
+        }
+
+        .todo-task--text {
+            color: $very-light-gray;
+        }
+
+        .todo {
+            background-image: url(../assets/images/bg-mobile-dark.jpg), $check-background;
+            @include mq(medium) {
+                background-image: url(../assets/images/bg-desktop-dark.jpg), $check-background;
+            }
+        }
+    }
+
+    &-light {
+        background-color: $very-light-grayish-blue;
+    }
+}
+
 .todo {
     background-image: url(../assets/images/bg-mobile-light.jpg), $check-background;
     background-position: top center;

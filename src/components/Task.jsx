@@ -23,15 +23,9 @@ export const Task = ({
         <img src={iconCheck} alt="check" className="todo-task--check" />
       </figure>
       <p
-        className="todo-task--text"
-        style={
-          completeTask
-            ? {
-                color: "hsl(233, 11%, 84%)",
-                textDecoration: "line-through",
-              }
-            : { color: "hsl(237, 14%, 26%)" }
-        }
+        className={`${
+          completeTask ? "todo-task--textCompleted" : "todo-task--text"
+        }`}
       >
         Aprender TDD
       </p>

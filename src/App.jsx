@@ -1,24 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Footer } from "./components/Footer";
 import iconMoon from "./assets/images/icon-moon.svg";
+import iconSun from "./assets/images/icon-sun.svg";
 import "./scss/app.scss";
 import { Task } from "./components/Task";
-
-const urlGithubUser = "https://github.com/jordytiradotorres";
+import { DarkModeContext } from "./context/DarkModeContext";
 
 const App = () => {
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
   const [completeTask, setCompleteTask] = useState(false);
 
   const toggleCompleteTask = () => setCompleteTask(!completeTask);
 
   return (
     <>
-      <main className="todo">
+      <main className={`todo ${darkMode ? "dark" : "light"}`}>
         <section className="todo-background paddingPaginaGlobal">
           <header className="todo-header">
             <h1>Todo</h1>
-            <figure>
-              <img src={iconMoon} alt="theme" />
+            <figure onClick={toggleDarkMode}>
+              {darkMode ? (
+                <img src={iconSun} alt="icon moon" />
+              ) : (
+                <img src={iconMoon} alt="icon sun" />
+              )}
             </figure>
           </header>
 
@@ -86,7 +92,7 @@ const App = () => {
           </section>
         </section>
 
-        <footer className="todo-footer">Drag and Drop to reorder list</footer>
+        <Footer text="Drag and Drop to reorder list" />
       </main>
     </>
   );
