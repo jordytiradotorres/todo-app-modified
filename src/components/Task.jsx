@@ -1,16 +1,13 @@
 import iconCheck from "../assets/images/icon-check.svg";
 import iconCross from "../assets/images/icon-cross.svg";
 
-export const Task = ({
-  completeTask = false,
-  toggleCompleteTask = (f) => f,
-}) => {
+export const Task = ({ toggleCompleteTask = (f) => f, id, text, complete }) => {
   return (
     <div className="todo-task">
       <figure
         className="todo-task--figure"
         style={
-          completeTask
+          complete
             ? {
                 border: "none",
                 background:
@@ -18,16 +15,17 @@ export const Task = ({
               }
             : { background: "transparent" }
         }
-        onClick={toggleCompleteTask}
+        onClick={() => toggleCompleteTask(id)}
       >
         <img src={iconCheck} alt="check" className="todo-task--check" />
       </figure>
       <p
         className={`${
-          completeTask ? "todo-task--textCompleted" : "todo-task--text"
+          complete ? "todo-task--textCompleted" : "todo-task--text"
         }`}
+        onClick={() => toggleCompleteTask(id)}
       >
-        Aprender TDD
+        {text}
       </p>
       <button type="button" className="todo-task--button">
         <img src={iconCross} alt="close" className="todo-task--close" />
