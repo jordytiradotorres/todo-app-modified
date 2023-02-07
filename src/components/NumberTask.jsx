@@ -1,8 +1,11 @@
 import React from "react";
 
-export const NumberTask = ({ tasksToComplete = [] }) => {
+export const NumberTask = ({
+  tasksToComplete = [],
+  deleteTasksComplete = (f) => f,
+}) => {
   return (
-    <div className="todo-task todo-task--total">
+    <div className="todo-task todo-task--total paddingPaginaGlobal">
       {tasksToComplete.length ? (
         <span>{tasksToComplete.length} tarea por completar</span>
       ) : (
@@ -21,7 +24,12 @@ export const NumberTask = ({ tasksToComplete = [] }) => {
         </button>
       </section>
 
-      <button className="todo-task--clearCompleted">Clear Completed</button>
+      <button
+        className="todo-task--clearCompleted"
+        onClick={deleteTasksComplete}
+      >
+        Clear Completed
+      </button>
     </div>
   );
 };

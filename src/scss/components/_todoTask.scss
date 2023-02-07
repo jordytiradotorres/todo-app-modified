@@ -8,6 +8,11 @@
     font-size: 0.9rem;
     padding: 0.75rem 0;
 
+    @include mq(medium) {
+        width: 500px;
+        margin: 0 auto;
+    }
+
     &:first-of-type {
         border-radius: 0.5rem 0.5rem 0 0;
     }
@@ -62,8 +67,14 @@
     &--total {
         display: flex;
         justify-content: space-between;
+        margin: 0 1.5rem;
         padding: 1rem;
         color: $dark-grayish-blue;
+
+        @include mq(medium) {
+            width: 500px;
+            margin: auto;
+        }
     }
 
     &--clearCompleted {

@@ -8,6 +8,7 @@ import iconMoon from "./assets/images/icon-moon.svg";
 import iconSun from "./assets/images/icon-sun.svg";
 import "./scss/app.scss";
 import { FormTask } from "./components/FormTask";
+import { Tasks } from "./components/Tasks";
 
 const App = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
@@ -50,7 +51,33 @@ const App = () => {
     setTasks(newTasks);
   };
 
+  const deleteTask = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+  };
+
+  const deleteTasksComplete = () =>
+    setTasks(tasks.filter((task) => !task.complete));
+
   const tasksToComplete = tasks.filter((task) => task.complete === false);
+
+  // todas las tareas
+  const showAllTasks = () => {
+    setTasks(
+      tasks.map((task) => (
+        <Task
+          key={task.id}
+          {...task}
+          toggleCompleteTask={toggleCompleteTask}
+          deleteTask={deleteTask}
+        />
+      ))
+    );
+  };
+
+  const showActiveTasks = () => {
+    setTasks(tasks.filter((task) => !task.complete));
+  };
 
   return (
     <>
@@ -74,22 +101,25 @@ const App = () => {
           />
         </section>
 
-        <section className="todo-tasks paddingPaginaGlobal">
-          {tasks.map((task) => (
-            <Task
-              key={task.id}
-              {...task}
-              toggleCompleteTask={toggleCompleteTask}
-            />
-          ))}
+        <Tasks
+          tasks={tasks}
+          toggleCompleteTask={toggleCompleteTask}
+          deleteTask={deleteTask}
+        />
 
-          <NumberTask tasksToComplete={tasksToComplete} />
+        <NumberTask
+          tasksToComplete={tasksToComplete}
+          deleteTasksComplete={deleteTasksComplete}
+        />
 
-          <section className="todo-actions paddingPaginaGlobal">
-            <button type="button">All</button>
-            <button type="button">Active</button>
-            <button type="button">Completed</button>
-          </section>
+        <section className="todo-actions paddingPaginaGlobal">
+          <button type="button" onClick={showAllTasks}>
+            All
+          </button>
+          <button type="button" onClick={showActiveTasks}>
+            Active
+          </button>
+          <button type="button">Completed</button>
         </section>
 
         <Footer text="Drag and Drop to reorder list" />

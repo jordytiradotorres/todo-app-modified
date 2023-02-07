@@ -1,7 +1,13 @@
 import iconCheck from "../assets/images/icon-check.svg";
 import iconCross from "../assets/images/icon-cross.svg";
 
-export const Task = ({ toggleCompleteTask = (f) => f, id, text, complete }) => {
+export const Task = ({
+  toggleCompleteTask = (f) => f,
+  deleteTask = (f) => f,
+  id,
+  text,
+  complete,
+}) => {
   return (
     <div className="todo-task">
       <figure
@@ -27,7 +33,11 @@ export const Task = ({ toggleCompleteTask = (f) => f, id, text, complete }) => {
       >
         {text}
       </p>
-      <button type="button" className="todo-task--button">
+      <button
+        type="button"
+        className="todo-task--button"
+        onClick={() => deleteTask(id)}
+      >
         <img src={iconCross} alt="close" className="todo-task--close" />
       </button>
     </div>
