@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Footer } from "./components/Footer";
-import { Task } from "./components/Task";
 import { v4 as uuidv4 } from "uuid";
 import { DarkModeContext } from "./context/DarkModeContext";
 import { NumberTask } from "./components/NumberTask";
@@ -9,24 +8,27 @@ import iconSun from "./assets/images/icon-sun.svg";
 import "./scss/app.scss";
 import { FormTask } from "./components/FormTask";
 import { Tasks } from "./components/Tasks";
+import { FilterTasks } from "./components/FilterTasks";
 
 const App = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Aprender TDD",
-      complete: false,
-    },
-    {
-      id: 2,
-      text: "Aprender educacion financiera",
-      complete: true,
-    },
-  ]);
-
+  const [tasks, setTasks] = useState(
+    localStorage.getItem("tasks")
+      ? JSON.parse(localStorage.getItem("tasks"))
+      : []
+  );
+  const [filteredTasks, setFilteredTasks] = useState([]);
   const [taskValue, setTaskValue] = useState("");
+
+  useEffect(() => {
+    const tasksLS = JSON.parse(localStorage.getItem("tasks"));
+    setTasks(tasksLS);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks) ?? []);
+  }, [tasks]);
 
   const addTask = (e) => {
     e.preventDefault();
@@ -61,23 +63,13 @@ const App = () => {
 
   const tasksToComplete = tasks.filter((task) => task.complete === false);
 
-  // todas las tareas
-  const showAllTasks = () => {
-    setTasks(
-      tasks.map((task) => (
-        <Task
-          key={task.id}
-          {...task}
-          toggleCompleteTask={toggleCompleteTask}
-          deleteTask={deleteTask}
-        />
-      ))
-    );
-  };
+  const filteredActiveTasks = () =>
+    setFilteredTasks(tasks.filter((task) => !task.complete));
 
-  const showActiveTasks = () => {
-    setTasks(tasks.filter((task) => !task.complete));
-  };
+  const filteredCompleteTasks = () =>
+    setFilteredTasks(tasks.filter((task) => task.complete));
+
+  const allTasks = () => setFilteredTasks([]);
 
   return (
     <>
@@ -101,26 +93,33 @@ const App = () => {
           />
         </section>
 
-        <Tasks
-          tasks={tasks}
-          toggleCompleteTask={toggleCompleteTask}
-          deleteTask={deleteTask}
-        />
+        {filteredTasks.length ? (
+          <Tasks
+            tasks={filteredTasks}
+            toggleCompleteTask={toggleCompleteTask}
+            deleteTask={deleteTask}
+          />
+        ) : (
+          <Tasks
+            tasks={tasks}
+            toggleCompleteTask={toggleCompleteTask}
+            deleteTask={deleteTask}
+          />
+        )}
 
         <NumberTask
           tasksToComplete={tasksToComplete}
           deleteTasksComplete={deleteTasksComplete}
+          allTasks={allTasks}
+          filteredActiveTasks={filteredActiveTasks}
+          filteredCompleteTasks={filteredCompleteTasks}
         />
 
-        <section className="todo-actions paddingPaginaGlobal">
-          <button type="button" onClick={showAllTasks}>
-            All
-          </button>
-          <button type="button" onClick={showActiveTasks}>
-            Active
-          </button>
-          <button type="button">Completed</button>
-        </section>
+        <FilterTasks
+          allTasks={allTasks}
+          filteredActiveTasks={filteredActiveTasks}
+          filteredCompleteTasks={filteredCompleteTasks}
+        />
 
         <Footer text="Drag and Drop to reorder list" />
       </main>
