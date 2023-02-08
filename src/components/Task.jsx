@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import iconCheck from "../assets/images/icon-check.svg";
 import iconCross from "../assets/images/icon-cross.svg";
 
@@ -42,4 +43,12 @@ export const Task = ({
       </button>
     </div>
   );
+};
+
+Task.propTypes = {
+  toggleCompleteTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  text: PropTypes.string,
+  complete: PropTypes.bool,
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Task } from "./Task";
 
 export const Tasks = ({
@@ -18,4 +18,10 @@ export const Tasks = ({
       ))}
     </section>
   );
+};
+
+Tasks.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  toggleCompleteTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };

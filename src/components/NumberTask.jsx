@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const NumberTask = ({
   tasksToComplete = [],
   deleteTasksComplete = (f) => f,
@@ -45,4 +47,12 @@ export const NumberTask = ({
       </button>
     </div>
   );
+};
+
+NumberTask.propTypes = {
+  tasksToComplete: PropTypes.array.isRequired,
+  deleteTasksComplete: PropTypes.func,
+  allTasks: PropTypes.func,
+  filteredActiveTasks: PropTypes.func,
+  filteredCompleteTasks: PropTypes.func,
 };

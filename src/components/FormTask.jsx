@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const FormTask = ({
   taskValue = "",
   setTaskValue = (f) => f,
@@ -16,4 +18,10 @@ export const FormTask = ({
       </form>
     </div>
   );
+};
+
+FormTask.propTypes = {
+  taskValue: PropTypes.string.isRequired,
+  setTaskValue: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
 };

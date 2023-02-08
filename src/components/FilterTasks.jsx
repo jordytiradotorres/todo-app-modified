@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const FilterTasks = ({
   filteredActiveTasks = (f) => f,
   filteredCompleteTasks = (f) => f,
@@ -16,4 +18,10 @@ export const FilterTasks = ({
       </button>
     </section>
   );
+};
+
+FilterTasks.propTypes = {
+  filteredActiveTasks: PropTypes.func.isRequired,
+  filteredCompleteTasks: PropTypes.func.isRequired,
+  allTasks: PropTypes.func.isRequired,
 };
