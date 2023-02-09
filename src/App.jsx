@@ -1,14 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { Footer } from "./components/Footer";
 import { v4 as uuidv4 } from "uuid";
 import { DarkModeContext } from "./context/DarkModeContext";
-import { NumberTask } from "./components/NumberTask";
+import { FormTask, Tasks, NumberTask, FilterTasks, Footer } from "./components";
 import iconMoon from "./assets/images/icon-moon.svg";
 import iconSun from "./assets/images/icon-sun.svg";
 import "./scss/app.scss";
-import { FormTask } from "./components/FormTask";
-import { Tasks } from "./components/Tasks";
-import { FilterTasks } from "./components/FilterTasks";
 
 const App = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
@@ -49,19 +45,13 @@ const App = () => {
     const newTasks = tasks.map((task) =>
       task.id === id ? { ...task, complete: !task.complete } : task
     );
-
     setTasks(newTasks);
   };
 
-  const deleteTask = (id) => {
-    const newTasks = tasks.filter((task) => task.id !== id);
-    setTasks(newTasks);
-  };
+  const deleteTask = (id) => setTasks(tasks.filter((task) => task.id !== id));
 
   const deleteTasksComplete = () =>
     setTasks(tasks.filter((task) => !task.complete));
-
-  const tasksToComplete = tasks.filter((task) => task.complete === false);
 
   const filteredActiveTasks = () =>
     setFilteredTasks(tasks.filter((task) => !task.complete));
@@ -70,6 +60,8 @@ const App = () => {
     setFilteredTasks(tasks.filter((task) => task.complete));
 
   const allTasks = () => setFilteredTasks([]);
+
+  const tasksToComplete = tasks.filter((task) => task.complete === false);
 
   return (
     <>
@@ -107,13 +99,19 @@ const App = () => {
           />
         )}
 
-        <NumberTask
-          tasksToComplete={tasksToComplete}
-          deleteTasksComplete={deleteTasksComplete}
-          allTasks={allTasks}
-          filteredActiveTasks={filteredActiveTasks}
-          filteredCompleteTasks={filteredCompleteTasks}
-        />
+        {tasks.length ? (
+          <NumberTask
+            tasksToComplete={tasksToComplete}
+            deleteTasksComplete={deleteTasksComplete}
+            allTasks={allTasks}
+            filteredActiveTasks={filteredActiveTasks}
+            filteredCompleteTasks={filteredCompleteTasks}
+          />
+        ) : (
+          <h2 className="zeroTasks">
+            No existen tareas, comienza a crear una...
+          </h2>
+        )}
 
         <FilterTasks
           allTasks={allTasks}
@@ -121,7 +119,7 @@ const App = () => {
           filteredCompleteTasks={filteredCompleteTasks}
         />
 
-        <Footer text="Drag and Drop to reorder list" />
+        {tasks.length > 0 && <Footer text="Drag and Drop to reorder list" />}
       </main>
     </>
   );
