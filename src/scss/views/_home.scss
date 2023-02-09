@@ -10,6 +10,17 @@
             background-color: $very-dark-desaturated-blue;
         }
 
+        .todo-input-dark {
+            color: $very-light-gray;
+        }
+
+        .todo-task--check {
+            display: none;
+        }
+        .todo-task--check.todo-task--checkDark {
+            display: block;
+        }
+
         .todo-task--text {
             color: $very-light-gray;
         }
@@ -39,4 +50,12 @@
     @include mq(medium) {
         background-image: url(../assets/images/bg-desktop-light.jpg), $check-background;
     }
+}
+
+.zeroTasks {
+    text-align: center;
+    font-weight: normal;
+    color: $very-dark-desaturated-blue;
+    margin-top: 1.5rem;
+    padding: 1rem;
 }

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Task } from "./Task";
+import { Task } from "./";
 
 export const Tasks = ({
   tasks = [],

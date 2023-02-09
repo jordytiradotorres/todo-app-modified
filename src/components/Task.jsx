@@ -24,7 +24,15 @@ export const Task = ({
         }
         onClick={() => toggleCompleteTask(id)}
       >
-        <img src={iconCheck} alt="check" className="todo-task--check" />
+        <img
+          src={iconCheck}
+          alt="check"
+          className={`${
+            complete
+              ? "todo-task--check todo-task--checkDark"
+              : "todo-task--check"
+          }`}
+        />
       </figure>
       <p
         className={`${
